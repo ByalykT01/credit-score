@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { db } from "~/server/db";
 
 interface User {
   name: string
@@ -35,7 +36,11 @@ const mockUsers = users.map((user, index) => ({
   user,
 }))
 
-export default function HomePage() {
+export default async function HomePage() {
+
+  const posts = await db.query.posts.findMany();
+  console.log(posts)
+
   return (
     <main>
       <div className='flex flex-wrap gap-4'>
@@ -47,9 +52,14 @@ export default function HomePage() {
           </div>
         ))}
       </div>
-      <div className="flex justify-center items-center h-56">
-        <div className="text-2xl font-semibold">
+      <div className="grid justify-center items-center h-56 gap-4">
+        <div className="text-2xl font-semibold ">
           GIVE ME YOUR DATA
+        </div>
+        <div className="text-2xl font-semibold grid gap-10">
+           {posts.map((post) => (
+            <div key={post.id}>{post.name}</div>
+           ))}
         </div>
       </div>
     </main>
