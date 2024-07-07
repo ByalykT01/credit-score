@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { db } from "~/server/db";
 
+export const dynamic = "force-dynamic";
 interface User {
   name: string
   amount: number
@@ -37,7 +37,6 @@ const mockUsers = users.map((user, index) => ({
 }))
 
 export default async function HomePage() {
-
   const posts = await db.query.posts.findMany();
   console.log(posts)
 
