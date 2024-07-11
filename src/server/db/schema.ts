@@ -8,7 +8,13 @@ import {
   serial,
   timestamp,
   varchar,
+  text, 
+  integer, 
+  boolean,
+  real
 } from "drizzle-orm/pg-core";
+
+
 
 /**
  * This is an example of how to use the multi-project schema feature of Drizzle ORM. Use the same
@@ -18,11 +24,25 @@ import {
  */
 export const createTable = pgTableCreator((name) => `credit-score_${name}`);
 
-export const posts = createTable(
-  "post",
+export const loans = createTable(
+  "loan",
   {
     id: serial("id").primaryKey(),
-    name: varchar("name", { length: 256 }),
+    username: varchar("name", { length: 256 }).notNull(),
+    loan_id: serial('loan_id'),
+    no_of_dependents: integer('no_of_dependents').notNull(),
+    education: text('education').notNull(),
+    self_employed: boolean('self_employed').notNull(),
+    income_annum: real('income_annum').notNull(),
+    loan_amount: real('loan_amount').notNull(),
+    loan_term: integer('loan_term').notNull(),
+    cibil_score: integer('cibil_score').notNull(),
+    residential_assets_value: real('residential_assets_value').notNull(),
+    commercial_assets_value: real('commercial_assets_value').notNull(),
+    luxury_assets_value: real('luxury_assets_value').notNull(),
+    bank_asset_value: real('bank_asset_value').notNull(),
+    loan_status: text('loan_status'),
+
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
@@ -31,6 +51,7 @@ export const posts = createTable(
     ),
   },
   (example) => ({
-    nameIndex: index("name_idx").on(example.name),
+    nameIndex: index("name_idx").on(example.username),
   })
 );
+

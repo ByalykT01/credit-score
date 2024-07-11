@@ -39,8 +39,8 @@ const mockUsers = users.map((user, index) => ({
 }));
 
 export default async function HomePage() {
-  const posts = await db.query.posts.findMany();
-  console.log(posts);
+  const loans = await db.query.loans.findMany();
+  console.log(loans);
 
   return (
     <main>
@@ -60,8 +60,8 @@ export default async function HomePage() {
         <div className="grid h-56 items-center justify-center gap-4">
           <div className="text-2xl font-semibold ">GIVE ME YOUR DATA</div>
           <div className="grid gap-10 text-2xl font-semibold">
-            {posts.map((post) => (
-              <div key={post.id}>{post.name}</div>
+            {loans.map((loan: any) => (
+              <div key={loan.id}>{loan.username + " " + loan.loan_term}</div>
             ))}
           </div>
         </div>
