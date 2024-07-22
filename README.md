@@ -8,7 +8,8 @@
 - [x] attach DB to UI
 - [x] add auth (w/ clerk)
 - [x] correct db schema based on loan approval dataset
-- [ ] add data insetion
+- [x] add data insetion
+- [x] basic dashboard w/ data
 - [ ] error management ( w/ Sentry)
 - [ ] routing (parallel route)
 - [ ] pass data through AI
