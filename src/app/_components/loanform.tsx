@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 export default function LoanForm() {
   const [formData, setFormData] = useState({
-    username: "",
+    userId: "",
     no_of_dependents: "",
     education: "",
     self_employed: "",
@@ -52,16 +52,6 @@ export default function LoanForm() {
     <div className="mx-auto mt-10 max-w-xl bg-zinc-600 p-6 text-zinc-100">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium ">Username</label>
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
-          />
-        </div>
-        <div>
           <label className="block text-sm font-medium ">
             No. of Dependents
           </label>
@@ -70,7 +60,7 @@ export default function LoanForm() {
             name="no_of_dependents"
             value={formData.no_of_dependents}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
+            className="mt-1 block w-full rounded-md border-zinc-300 text-zinc-800 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
           />
         </div>
         <div>
@@ -80,7 +70,7 @@ export default function LoanForm() {
             name="education"
             value={formData.education}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
+            className="mt-1 block w-full rounded-md border-zinc-300 text-zinc-800 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
           />
         </div>
         <div>
@@ -90,7 +80,7 @@ export default function LoanForm() {
             name="self_employed"
             value={formData.self_employed}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
+            className="mt-1 block w-full rounded-md border-zinc-300 text-zinc-800 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
           />
         </div>
         <div>
@@ -100,7 +90,7 @@ export default function LoanForm() {
             name="income_annum"
             value={formData.income_annum}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
+            className="mt-1 block w-full rounded-md border-zinc-300 text-zinc-800 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
           />
         </div>
         <div>
@@ -110,7 +100,7 @@ export default function LoanForm() {
             name="loan_amount"
             value={formData.loan_amount}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
+            className="mt-1 block w-full rounded-md border-zinc-300 text-zinc-800 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
           />
         </div>
         <div>
@@ -120,7 +110,7 @@ export default function LoanForm() {
             name="loan_term"
             value={formData.loan_term}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
+            className="mt-1 block w-full rounded-md border-zinc-300 text-zinc-800 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
           />
         </div>
         <div>
@@ -130,7 +120,7 @@ export default function LoanForm() {
             name="cibil_score"
             value={formData.cibil_score}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
+            className="mt-1 block w-full rounded-md border-zinc-300 text-zinc-800 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
           />
         </div>
         <div>
@@ -142,7 +132,7 @@ export default function LoanForm() {
             name="residential_assets_value"
             value={formData.residential_assets_value}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
+            className="mt-1 block w-full rounded-md border-zinc-300 text-zinc-800 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
           />
         </div>
         <div>
@@ -154,7 +144,7 @@ export default function LoanForm() {
             name="commercial_assets_value"
             value={formData.commercial_assets_value}
             onChange={handleChange}
-            className="border-zinc-300 mt-1 block w-full rounded-md shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
+            className="mt-1 block w-full rounded-md border-zinc-300 text-zinc-800 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
           />
         </div>
         <div>
@@ -166,7 +156,7 @@ export default function LoanForm() {
             name="luxury_assets_value"
             value={formData.luxury_assets_value}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
+            className="mt-1 block w-full rounded-md border-zinc-300 text-zinc-800 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
           />
         </div>
         <div>
@@ -176,7 +166,7 @@ export default function LoanForm() {
             name="bank_asset_value"
             value={formData.bank_asset_value}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
+            className="mt-1 block w-full rounded-md border-zinc-300 text-zinc-800 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
           />
         </div>
 
@@ -189,11 +179,10 @@ export default function LoanForm() {
       </form>
       {approval !== null && (
         <div className="mt-4 rounded-md bg-zinc-200 p-4 shadow-sm">
-          Loan Approval Status:{" "}
           <span
             className={`font-semibold ${approval ? "text-green-600" : "text-red-600"}`}
           >
-            {approval ? "Approved" : "Not Approved"}
+            Saved
           </span>
         </div>
       )}

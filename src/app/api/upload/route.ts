@@ -1,25 +1,37 @@
 // pages/api/predict.ts
+import { auth } from '@clerk/nextjs/server';
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '~/server/db';
 import { loans } from '~/server/db/schema';
+import { getLoans } from '~/server/queries';
 
 
 export const GET = async() => {
   try{
-  const data = await db.query.loans.findMany();
+  const loan = await getLoans()
 
-  return new NextResponse(JSON.stringify(data), {status: 200})
+  return new NextResponse(JSON.stringify(loan), {status: 200})
   } catch(e: any){
     return new NextResponse("Error in fetching users - " + e.message, {status: 500})
   }
 }
 
-export const POST = async(req: Request) => {
-  try{
-    const new_data = await req.json();
-    const insertedLoan = await db.insert(loans).values(new_data)
-    console.log(insertedLoan)
-   return new NextResponse(JSON.stringify({message: "new user is created"}), {status: 201})
+export const POST = async (req: Request) => {
+  try {
+    const user = auth();
+
+    if (!user.userId) throw new Error("Unauthorized");
+
+    const new_loan = await req.json();
+
+    // Update the userId field in the loan object
+    new_loan.userId = user.userId;
+
+    // Insert the updated loan into the database
+    const insertedLoan = await db.insert(loans).values(new_loan);
+    console.log(insertedLoan);
+
+    return new NextResponse(JSON.stringify({ message: "New loan is created" }), { status: 201 });
   } catch (e: any) {
     console.error('Error with new loan creation:', e);
     return new NextResponse(
@@ -35,7 +47,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const new_data = req.body;
     const {
-      username,
+      userId,
       no_of_dependents,
       education,
       self_employed,
@@ -51,7 +63,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     } = new_data;
 
     const newLoan = await db.insert(loans).values({
-      username,
+      userId,
       no_of_dependents,
       education,
       self_employed,

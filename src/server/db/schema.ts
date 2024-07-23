@@ -28,7 +28,7 @@ export const loans = createTable(
   "loan",
   {
     id: serial("id").primaryKey(),
-    username: varchar("name", { length: 256 }).notNull(),
+    userId: varchar("name", { length: 256 }).notNull(),
     loan_id: serial('loan_id'),
     no_of_dependents: integer('no_of_dependents').notNull(),
     education: text('education').notNull(),
@@ -51,7 +51,7 @@ export const loans = createTable(
     ),
   },
   (example) => ({
-    nameIndex: index("name_idx").on(example.username),
+    nameIndex: index("name_idx").on(example.userId),
   })
 );
 

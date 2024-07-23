@@ -1,11 +1,11 @@
-import { db } from "~/server/db";
+import { getMyLoans } from "~/server/queries";
+
+export const dynamic = "force-dynamic";
 
 export async function UserPage() {
-  const loans = await db.query.loans.findMany();
+  const loans = await getMyLoans();
 
-  loans.map((loan: any, index: number) =>
-    console.log(loan.self_employed.toString()),
-  );
+  loans.map((loan: any, index: number) => console.log(loan.createdAt.toString()));
   return (
     <div className="flex items-center justify-center">
       <div className="container">
@@ -13,8 +13,8 @@ export async function UserPage() {
         <div className="">
           <table className="min-w-full border border-zinc-700">
             <thead>
-              <tr >
-                <th className="border-b px-4 py-2">Username</th>
+              <tr>
+                <th className="border-b px-4 py-2">Created At</th>
                 <th className="border-b px-4 py-2">Dependents</th>
                 <th className="border-b px-4 py-2">Education</th>
                 <th className="border-b px-4 py-2">Self Employed</th>
@@ -32,7 +32,9 @@ export async function UserPage() {
             <tbody>
               {loans.map((loan: any, index: number) => (
                 <tr key={index}>
-                  <td className="border-b px-4 py-2">{loan.username}</td>
+                  <td className="border-b px-4 py-2">
+                    {loan.createdAt.toString()}
+                  </td>
                   <td className="border-b px-4 py-2">
                     {loan.no_of_dependents}
                   </td>
