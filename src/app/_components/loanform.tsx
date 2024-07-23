@@ -49,22 +49,20 @@ export default function LoanForm() {
   };
 
   return (
-    <div className="bg-zinc-100 p-6 text-zinc-900">
+    <div className="mx-auto mt-10 max-w-xl bg-zinc-600 p-6 text-zinc-100">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-zinc-700">
-            Username
-          </label>
+          <label className="block text-sm font-medium ">Username</label>
           <input
             type="text"
             name="username"
             value={formData.username}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
+            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-zinc-700">
+          <label className="block text-sm font-medium ">
             No. of Dependents
           </label>
           <input
@@ -72,83 +70,71 @@ export default function LoanForm() {
             name="no_of_dependents"
             value={formData.no_of_dependents}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
+            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-zinc-700">
-            Education
-          </label>
+          <label className="block text-sm font-medium ">Education</label>
           <input
             type="text"
             name="education"
             value={formData.education}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
+            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-zinc-700">
-            Self Employed
-          </label>
+          <label className="block text-sm font-medium ">Self Employed</label>
           <input
             type="text"
             name="self_employed"
             value={formData.self_employed}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
+            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-zinc-700">
-            Income per Annum
-          </label>
+          <label className="block text-sm font-medium ">Income per Annum</label>
           <input
             type="text"
             name="income_annum"
             value={formData.income_annum}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
+            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-zinc-700">
-            Loan Amount
-          </label>
+          <label className="block text-sm font-medium ">Loan Amount</label>
           <input
             type="text"
             name="loan_amount"
             value={formData.loan_amount}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
+            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-zinc-700">
-            Loan Term
-          </label>
+          <label className="block text-sm font-medium ">Loan Term</label>
           <input
             type="text"
             name="loan_term"
             value={formData.loan_term}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
+            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-zinc-700">
-            CIBIL ScoreCo
-          </label>
+          <label className="block text-sm font-medium ">CIBIL Score</label>
           <input
             type="text"
             name="cibil_score"
             value={formData.cibil_score}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
+            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-zinc-700">
+          <label className="block text-sm font-medium ">
             Residential Assets Value
           </label>
           <input
@@ -156,11 +142,11 @@ export default function LoanForm() {
             name="residential_assets_value"
             value={formData.residential_assets_value}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
+            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-zinc-700">
+          <label className="block text-sm font-medium ">
             Commercial Assets Value
           </label>
           <input
@@ -168,11 +154,11 @@ export default function LoanForm() {
             name="commercial_assets_value"
             value={formData.commercial_assets_value}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
+            className="border-zinc-300 mt-1 block w-full rounded-md shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-zinc-700">
+          <label className="block text-sm font-medium ">
             Luxury Assets Value
           </label>
           <input
@@ -180,25 +166,23 @@ export default function LoanForm() {
             name="luxury_assets_value"
             value={formData.luxury_assets_value}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
+            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-zinc-700">
-            Bank Asset Value
-          </label>
+          <label className="block text-sm font-medium ">Bank Asset Value</label>
           <input
             type="text"
             name="bank_asset_value"
             value={formData.bank_asset_value}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
+            className="mt-1 block w-full rounded-md border-zinc-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm text-zinc-800"
           />
         </div>
 
         <button
           type="submit"
-          className="mt-4 w-full rounded-md bg-zinc-600 px-4 py-2 text-white shadow-sm hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2"
+          className="mt-4 w-full rounded-md bg-zinc-800 px-4 py-2 text-white shadow-sm hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2"
         >
           Submit
         </button>
