@@ -10,7 +10,7 @@
 - [x] correct db schema based on loan approval dataset
 - [x] add data insetion
 - [x] basic dashboard w/ data
-- [ ] "taint" server
+- [x] "taint" server
 - [ ] error management ( w/ Sentry)
 - [ ] routing (parallel route)
 - [ ] pass data through AI
