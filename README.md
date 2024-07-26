@@ -11,7 +11,7 @@
 - [x] add data insetion
 - [x] basic dashboard w/ data
 - [x] "taint" server
-- [ ] error management ( w/ Sentry)
+- [x] error management ( w/ Sentry)
 - [ ] routing (parallel route)
 - [ ] pass data through AI
 - [ ] attach AI to project
