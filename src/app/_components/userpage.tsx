@@ -1,11 +1,10 @@
+import Link from "next/link";
 import { getMyLoans } from "~/server/queries";
 
 export const dynamic = "force-dynamic";
 
 export async function UserPage() {
   const loans = await getMyLoans();
-
-  loans.map((loan: any, index: number) => console.log(loan.createdAt.toString()));
   return (
     <div className="flex items-center justify-center">
       <div className="container">
@@ -32,9 +31,11 @@ export async function UserPage() {
             <tbody>
               {loans.map((loan: any, index: number) => (
                 <tr key={index}>
+                  <Link href={`/dashboard/loans/${loan.id}`}>
                   <td className="border-b px-4 py-2">
                     {loan.createdAt.toString()}
                   </td>
+                  </Link>
                   <td className="border-b px-4 py-2">
                     {loan.no_of_dependents}
                   </td>

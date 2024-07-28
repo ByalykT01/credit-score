@@ -19,3 +19,18 @@ export async function getLoans() {
 
   return loans;
 }
+
+export async function getLoan(id: number) {
+  const user = auth();
+
+  if(!user.userId) throw new Error("Unauthorized on queries")
+
+  const loan = await db.query.loans.findFirst({
+    where: (model, { eq }) => eq(model.id, id)
+  });
+
+  if(!loan) throw new Error("Image not found!");
+
+  if(loan.userId !== user.userId) throw new Error("Unauthorized: wrong userId")
+  return loan;
+}
