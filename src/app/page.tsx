@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   return (
-    <main>
+    <main className="min-h-[95vh]">
       <SignedOut>
         <WelcomePage />
       </SignedOut>

@@ -17,14 +17,14 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <ClerkProvider>
-    <html lang="en" className={`${GeistSans.variable}`}>
-      <body>
-        <TopNav/>
+      <html lang="en" className={`${GeistSans.variable}`}>
+        <body>
+          <TopNav />
 
-        {children}
-        <div id="modal-root" />
-      </body>
-    </html>
+          {children}
+          <div id="modal-root" />
+        </body>
+      </html>
     </ClerkProvider>
   );
 }
@@ -42,5 +42,5 @@ export default function RootLayout(props: {
       </body>
     </html>
   );
-} 
+}
 */

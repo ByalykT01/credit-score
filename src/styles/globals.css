@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-  @apply bg-zinc-900 text-zinc-100;
+  @apply from-aurora-6 to-aurora-7 min-h-full bg-gradient-to-b;
 }
