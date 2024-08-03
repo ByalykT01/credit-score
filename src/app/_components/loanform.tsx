@@ -1,32 +1,45 @@
 "use client";
-
+import type { LoanData } from "~/lib/types";
 import { useState } from "react";
+import Input from "./_formcomponents/Input";
+import Select from "./_formcomponents/Select";
 
 export const dynamic = "force-dynamic";
 
 export default function LoanForm() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<LoanData>({
+    id: 0,
     userId: "",
-    no_of_dependents: "",
-    education: "",
-    self_employed: "",
-    income_annum: "",
-    loan_amount: "",
-    loan_term: "",
-    cibil_score: "",
-    residential_assets_value: "",
-    commercial_assets_value: "",
-    luxury_assets_value: "",
-    bank_asset_value: "",
+    no_of_dependents: 0,
+    graduated: false,
+    self_employed: false,
+    income_annum: 0,
+    loan_amount: 0,
+    loan_term: 0,
+    cibil_score: 0,
+    residential_assets_value: 0,
+    commercial_assets_value: 0,
+    luxury_assets_value: 0,
+    bank_asset_value: 0,
     loan_status: "",
+    createdAt: new Date(),
+    updatedAt: new Date(),
   });
-  const [approval, setApproval] = useState(null);
+  const [approval, setApproval] = useState<string | null>(null);
 
-  const handleChange = (e: any) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ): void => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value === "true" ? true : value === "false" ? false : value,
+    });
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     e.preventDefault();
     try {
       const response = await fetch("/api/upload", {
@@ -41,138 +54,131 @@ export default function LoanForm() {
         throw new Error("Network response was not ok");
       }
 
-      const data = await response.json();
-      setApproval(data.approval);
+      const loanData: LoanData = (await response.json()) as LoanData;
+      console.log(loanData);
+      setApproval(loanData.loan_status as string | null);
     } catch (error) {
       console.error("Error fetching prediction", error);
     }
   };
 
   return (
-    <div className="mx-auto mt-10 max-w-xl bg-zinc-600 p-6 text-zinc-100">
+    <div className="mx-auto mt-10 block max-w-[60vw] bg-gradient-to-b from-aurora-7 to-aurora-6 p-6 text-aurora-18">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium ">
-            No. of Dependents
-          </label>
-          <input
-            type="text"
+          <Input
+            label="No. of Dependents"
             name="no_of_dependents"
+            type="number"
             value={formData.no_of_dependents}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 text-zinc-800 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
+            tooltip="The count of individuals, who rely on you for financial support"
           />
         </div>
+        <Select
+          label="Graduated"
+          name="graduated"
+          value={formData.graduated}
+          options={[
+            { value: true, label: "Graduated" },
+            { value: false, label: "Not Graduated" },
+          ]}
+          onChange={handleChange}
+        />
+
+        <Select
+          label="Self Employed"
+          name="self_employed"
+          value={formData.self_employed}
+          options={[
+            { value: true, label: "Self Employed" },
+            { value: false, label: "Not Self Employed" },
+          ]}
+          onChange={handleChange}
+        />
         <div>
-          <label className="block text-sm font-medium ">Education</label>
-          <input
-            type="text"
-            name="education"
-            value={formData.education}
-            onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 text-zinc-800 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium ">Self Employed</label>
-          <input
-            type="text"
-            name="self_employed"
-            value={formData.self_employed}
-            onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 text-zinc-800 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium ">Income per Annum</label>
-          <input
-            type="text"
+          <Input
+            label="Income per Annum"
             name="income_annum"
+            type="number"
             value={formData.income_annum}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 text-zinc-800 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
+            tooltip="Year's total money received from a job"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium ">Loan Amount</label>
-          <input
-            type="text"
+          <Input
+            label="Loan Amount"
             name="loan_amount"
+            type="number"
             value={formData.loan_amount}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 text-zinc-800 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
+            tooltip="An amount of money that you want to borrow"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium ">Loan Term</label>
-          <input
-            type="text"
+          <Input
+            label="Loan Term"
             name="loan_term"
+            type="number"
             value={formData.loan_term}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 text-zinc-800 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
+            tooltip="The length in years of time it takes for a loan to be paid off completely"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium ">CIBIL Score</label>
-          <input
-            type="text"
+          <Input
+            label="CIBIL Score"
             name="cibil_score"
+            type="number"
             value={formData.cibil_score}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 text-zinc-800 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
+            tooltip="A credit score - numerical expression, that is used to represent the creditworthiness of an individual"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium ">
-            Residential Assets Value
-          </label>
-          <input
-            type="text"
+          <Input
+            label="Residential Assets Value"
             name="residential_assets_value"
+            type="number"
             value={formData.residential_assets_value}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 text-zinc-800 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
+            tooltip="Estimated total value of your homes and properties"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium ">
-            Commercial Assets Value
-          </label>
-          <input
-            type="text"
+          <Input
+            label="Commercial Assets Value"
             name="commercial_assets_value"
+            type="number"
             value={formData.commercial_assets_value}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 text-zinc-800 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
+            tooltip="Estimated total value of your business properties"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium ">
-            Luxury Assets Value
-          </label>
-          <input
-            type="text"
+          <Input
+            label="Luxury Assets Value"
             name="luxury_assets_value"
+            type="number"
             value={formData.luxury_assets_value}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 text-zinc-800 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
+            tooltip="Estimated total value of your high-end possessions, such as art, jewelry, and luxury cars"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium ">Bank Asset Value</label>
-          <input
-            type="text"
+          <Input
+            label="Bank Asset Value"
             name="bank_asset_value"
+            type="number"
             value={formData.bank_asset_value}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 text-zinc-800 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 sm:text-sm"
+            tooltip="Estimated total value of your financial holdings in banks, including savings, investments, and other monetary assets"
           />
         </div>
-
         <button
           type="submit"
-          className="mt-4 w-full rounded-md bg-zinc-800 px-4 py-2 text-white shadow-sm hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2"
+          className="mt-4 w-full rounded-md bg-aurora-5 px-4 py-2 text-3xl text-aurora-18 shadow-sm hover:bg-aurora-4 focus:outline-none focus:ring-2 focus:ring-offset-2"
         >
           Submit
         </button>

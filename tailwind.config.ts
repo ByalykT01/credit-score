@@ -5,7 +5,9 @@ export default {
   content: ["./src/**/*.tsx"],
   theme: {
     extend: {
-      // https://fonts.google.com/selection?sort=popularity&subset=latin&script=Latn
+      fontFamily: {
+        crete: ["Crete Round", ...fontFamily.sans],
+      },
       colors: {
         //custom blues
         "aurora-1": "#191725",
