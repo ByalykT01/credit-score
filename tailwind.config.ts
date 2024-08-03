@@ -6,7 +6,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        crete: ["Crete Round", ...fontFamily.sans],
+        pt_sans: ["PT Sans", ...fontFamily.sans],
       },
       colors: {
         //custom blues

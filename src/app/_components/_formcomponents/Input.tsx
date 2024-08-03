@@ -29,7 +29,7 @@ const Input: React.FC<InputProps> = ({
       >
         {label}
         {tooltip && isTooltipVisible && (
-          <div className="absolute bottom-14 mr-2 w-max -translate-y-1/2 transform rounded-md bg-black px-3 py-1 text-white shadow-lg">
+          <div className="absolute bottom-14 mr-2 w-max -translate-y-1/2 transform rounded-md bg-aurora-9 px-3 py-1 text-white shadow-lg">
             {tooltip}
           </div>
         )}

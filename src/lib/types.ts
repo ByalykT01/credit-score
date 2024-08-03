@@ -1,5 +1,4 @@
 export interface LoanData {
-  id: number;
   userId: string;
   no_of_dependents: number;
   graduated: boolean;
@@ -13,6 +12,4 @@ export interface LoanData {
   luxury_assets_value: number;
   bank_asset_value: number;
   loan_status: string;
-  createdAt: Date;
-  updatedAt: Date;
 }

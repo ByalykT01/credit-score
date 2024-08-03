@@ -8,7 +8,6 @@ export const dynamic = "force-dynamic";
 
 export default function LoanForm() {
   const [formData, setFormData] = useState<LoanData>({
-    id: 0,
     userId: "",
     no_of_dependents: 0,
     graduated: false,
@@ -22,8 +21,6 @@ export default function LoanForm() {
     luxury_assets_value: 0,
     bank_asset_value: 0,
     loan_status: "",
-    createdAt: new Date(),
-    updatedAt: new Date(),
   });
   const [approval, setApproval] = useState<string | null>(null);
 

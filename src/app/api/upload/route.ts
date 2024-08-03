@@ -22,23 +22,26 @@ export const GET = async () => {
 export const POST = async (req: Request) => {
   try {
     const user = auth();
+
     if (!user.userId) throw new Error("Unauthorized");
 
-    const loanData: LoanData = (await req.json()) as LoanData;
+    const new_loan = await req.json();
 
-    const newLoan = await db.insert(loans).values({
-      ...loanData,
-      userId: user.userId,
-    });
+    // Update the userId field in the loan object
+    new_loan.userId = user.userId;
 
-    return NextResponse.json(
-      { message: "Loan created successfully", loanId: newLoan.id },
+    // Insert the updated loan into the database
+    const insertedLoan = await db.insert(loans).values(new_loan);
+    console.log(insertedLoan);
+
+    return new NextResponse(
+      JSON.stringify({ message: "New loan is created" }),
       { status: 201 },
     );
-  } catch (error) {
-    console.error("Error creating loan:", error);
-    return NextResponse.json(
-      { error: "Failed to create loan" },
+  } catch (e: any) {
+    console.error("Error with new loan creation:", e);
+    return new NextResponse(
+      JSON.stringify({ message: "Error with new loan creation: " + e.message }),
       { status: 500 },
     );
   }
