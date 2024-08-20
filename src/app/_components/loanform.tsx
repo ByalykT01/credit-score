@@ -10,7 +10,6 @@ export default function LoanForm() {
   const [formData, setFormData] = useState<LoanData>({
     userId: "",
     no_of_dependents: 0,
-    graduated: false,
     self_employed: false,
     income_annum: 0,
     loan_amount: 0,
@@ -20,9 +19,10 @@ export default function LoanForm() {
     commercial_assets_value: 0,
     luxury_assets_value: 0,
     bank_asset_value: 0,
-    loan_status: "",
+    loan_status: "", // Keep loan_status as a string
+    graduated: false,
   });
-  const [approval, setApproval] = useState<string | null>(null);
+  const [approval, setApproval] = useState<boolean | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -46,16 +46,23 @@ export default function LoanForm() {
         },
         body: JSON.stringify(formData),
       });
-
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-
-      const loanData: LoanData = (await response.json()) as LoanData;
-      console.log(loanData);
-      setApproval(loanData.loan_status as string | null);
+      const responseData = await response.json();
+      const status = responseData.loan_status[0] ? "Approved" : "Rejected";
+      setApproval(responseData.loan_status[0] || false);
+      setFormData((prevData) => ({
+        ...prevData,
+        loan_status: status, // Update loan_status with a human-readable string
+      }));
     } catch (error) {
       console.error("Error fetching prediction", error);
+      setApproval(false);
+      setFormData((prevData) => ({
+        ...prevData,
+        loan_status: "Rejected", // Set loan_status to "Rejected" on error
+      }));
     }
   };
 
@@ -185,7 +192,7 @@ export default function LoanForm() {
           <span
             className={`font-semibold ${approval ? "text-green-600" : "text-red-600"}`}
           >
-            Saved
+            {formData.loan_status} {/* Display the updated loan_status */}
           </span>
         </div>
       )}
